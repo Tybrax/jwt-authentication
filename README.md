@@ -1,24 +1,29 @@
-# README
+# JWT authentication in RoR API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### SET-UP
 
-Things you may want to cover:
+##### Install gems :
 
-* Ruby version
+In the project directory, run :
 
-* System dependencies
+``` Shell
+bundle install
+```
 
-* Configuration
+##### Database
 
-* Database creation
+``` Shell
+rails db:migrate
+```
 
-* Database initialization
+##### Check routes and endpoints
 
-* How to run the test suite
+``` Shell
+rails routes
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+##### Run server on port 3001
 
-* Deployment instructions
-
-* ...
+``` Shell
+rails s -p 3001
+```
