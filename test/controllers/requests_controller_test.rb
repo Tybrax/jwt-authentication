@@ -12,7 +12,7 @@ class RequestsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create request" do
     assert_difference('Request.count') do
-      post requests_url, params: { request: { description: @request.description, location: @request.location, request_type: @request.request_type, status: @request.status, title: @request.title } }, as: :json
+      post requests_url, params: { request: { description: @request.description, location: @request.location, request_type: @request.request_type, status: @request.status, title: @request.title, user_id: @request.user_id } }, as: :json
     end
 
     assert_response 201
@@ -24,7 +24,7 @@ class RequestsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update request" do
-    patch request_url(@request), params: { request: { description: @request.description, location: @request.location, request_type: @request.request_type, status: @request.status, title: @request.title } }, as: :json
+    patch request_url(@request), params: { request: { description: @request.description, location: @request.location, request_type: @request.request_type, status: @request.status, title: @request.title, user_id: @request.user_id } }, as: :json
     assert_response 200
   end
 

@@ -1372,3 +1372,40 @@ puma (4.3.5) lib/puma/server.rb:713:in `handle_request'
 puma (4.3.5) lib/puma/server.rb:472:in `process_client'
 puma (4.3.5) lib/puma/server.rb:328:in `block in run'
 puma (4.3.5) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started POST "/auth/signup" for ::1 at 2020-08-24 16:45:24 +0200
+  [1m[35m (4.7ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#create as HTML
+  Parameters: {"email"=>"t.ratat@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "first_name"=>"Thierry", "last_name"=>"Ratat", "file"=>#<ActionDispatch::Http::UploadedFile:0x00000000090ed900 @tempfile=#<Tempfile:C:/Users/Bastien/AppData/Local/Temp/RackMultipart20200824-8596-8dap9u.jpg>, @original_filename="Chrysanthemum.jpg", @content_type="image/jpeg", @headers="Content-Disposition: form-data; name=\"file\"; filename=\"Chrysanthemum.jpg\"\r\nContent-Type: image/jpeg\r\n">}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:21:in `create'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "t.ratat@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:21:in `create'
+  [1m[36mUser Create (0.9ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "first_name", "last_name") VALUES (?, ?, ?, ?, ?, ?)[0m  [["email", "t.ratat@gmail.com"], ["password_digest", "$2a$12$Bam/GxUv8ngUExbxaKh7fOYcXPrW0UU39Nzc4wWyMShK7ubQbHd2q"], ["created_at", "2020-08-24 14:45:24.993873"], ["updated_at", "2020-08-24 14:45:24.993873"], ["first_name", "Thierry"], ["last_name", "Ratat"]]
+  ↳ app/controllers/users_controller.rb:21:in `create'
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" INNER JOIN "active_storage_attachments" ON "active_storage_blobs"."id" = "active_storage_attachments"."blob_id" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 4], ["record_type", "User"], ["name", "file"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:21:in `create'
+  [1m[36mActiveStorage::Attachment Load (0.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 4], ["record_type", "User"], ["name", "file"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:21:in `create'
+  [1m[36mActiveStorage::Blob Create (0.5ms)[0m  [1m[32mINSERT INTO "active_storage_blobs" ("key", "filename", "content_type", "metadata", "byte_size", "checksum", "created_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["key", "3f9ujx4pya7jnutiw6z5233ld26n"], ["filename", "Chrysanthemum.jpg"], ["content_type", "image/jpeg"], ["metadata", "{\"identified\":true}"], ["byte_size", 879394], ["checksum", "B248rtdYocGMkaDpyuM2jw=="], ["created_at", "2020-08-24 14:45:25.203885"]]
+  ↳ app/controllers/users_controller.rb:21:in `create'
+  [1m[36mActiveStorage::Attachment Create (0.2ms)[0m  [1m[32mINSERT INTO "active_storage_attachments" ("name", "record_type", "record_id", "blob_id", "created_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "file"], ["record_type", "User"], ["record_id", 4], ["blob_id", 3], ["created_at", "2020-08-24 14:45:25.206886"]]
+  ↳ app/controllers/users_controller.rb:21:in `create'
+  [1m[36mUser Update (0.2ms)[0m  [1m[33mUPDATE "users" SET "updated_at" = ? WHERE "users"."id" = ?[0m  [["updated_at", "2020-08-24 14:45:25.209886"], ["id", 4]]
+  ↳ app/controllers/users_controller.rb:21:in `create'
+  [1m[35m (11.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:21:in `create'
+[36m  Disk Storage (8.2ms) [0m[32mUploaded file to key: 3f9ujx4pya7jnutiw6z5233ld26n (checksum: B248rtdYocGMkaDpyuM2jw==)[0m
+[ActiveJob] Enqueued ActiveStorage::AnalyzeJob (Job ID: eb56bd0c-592d-4d5d-870d-84992d36f61f) to Async(active_storage_analysis) with arguments: #<GlobalID:0x00000000074be040 @uri=#<URI::GID gid://medium-jwt/ActiveStorage::Blob/3>>
+Completed 201 Created in 669ms (Views: 1.9ms | ActiveRecord: 16.7ms | Allocations: 55699)
+
+
+  [1m[36mActiveStorage::Blob Load (1.4ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+[ActiveJob] [ActiveStorage::AnalyzeJob] [eb56bd0c-592d-4d5d-870d-84992d36f61f] Performing ActiveStorage::AnalyzeJob (Job ID: eb56bd0c-592d-4d5d-870d-84992d36f61f) from Async(active_storage_analysis) enqueued at 2020-08-24T14:45:25Z with arguments: #<GlobalID:0x00000000082f9e98 @uri=#<URI::GID gid://medium-jwt/ActiveStorage::Blob/3>>
+[ActiveJob] [ActiveStorage::AnalyzeJob] [eb56bd0c-592d-4d5d-870d-84992d36f61f] [36m  Disk Storage (4.8ms) [0m[34mDownloaded file from key: 3f9ujx4pya7jnutiw6z5233ld26n[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [eb56bd0c-592d-4d5d-870d-84992d36f61f] Skipping image analysis because the mini_magick gem isn't installed
+[ActiveJob] [ActiveStorage::AnalyzeJob] [eb56bd0c-592d-4d5d-870d-84992d36f61f]   [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [eb56bd0c-592d-4d5d-870d-84992d36f61f]   [1m[36mActiveStorage::Blob Update (1.2ms)[0m  [1m[33mUPDATE "active_storage_blobs" SET "metadata" = ? WHERE "active_storage_blobs"."id" = ?[0m  [["metadata", "{\"identified\":true,\"analyzed\":true}"], ["id", 3]]
+[ActiveJob] [ActiveStorage::AnalyzeJob] [eb56bd0c-592d-4d5d-870d-84992d36f61f]   [1m[35m (11.8ms)[0m  [1m[36mcommit transaction[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [eb56bd0c-592d-4d5d-870d-84992d36f61f] Performed ActiveStorage::AnalyzeJob (Job ID: eb56bd0c-592d-4d5d-870d-84992d36f61f) from Async(active_storage_analysis) in 68.74ms
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT ?[0m  [["LIMIT", 11]]
